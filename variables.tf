@@ -15,8 +15,6 @@ variable "location_main" {
   type        = string
 }
 
-variable "vnet_main_address_space" {
-}
 variable "vnet_main_dns_servers" {
 }
 
