@@ -1,33 +1,26 @@
 locals {
   ### TAGS
-  tags_generic = module.naming-hub.tags_generic
+  #GENERIC FOR HUB COLLECTION
+  tags_hub_generic = module.naming-hub.tags_hub_generic
 
-  tags_module = merge(local.tags_generic,
+  #MODULE GENERIC
+  tags_module_generic = merge(local.tags_hub_generic,
     {
-      module = "azure-hub-network",
+      terraform-module = "azure-hub-network",
   })
 
-  tags_vnet_hub = merge(local.tags_generic,
-    {
-      vnet_type = "hub"
-  })
+  #SUBENV GENERIC
+  tags_subenv_main_generic            = merge(local.tags_module_generic, module.naming-hub.tags_subenv["main"])
+  tags_subenv_gateway_generic         = merge(local.tags_module_generic, module.naming-hub.tags_subenv["gateway"])
+  tags_subenv_shared_services_generic = merge(local.tags_module_generic, module.naming-hub.tags_subenv["shared_services"])
+  tags_subenv_dmz_generic             = merge(local.tags_module_generic, module.naming-hub.tags_subenv["dmz"])
 
-  tags_subenv_gateway = merge(local.tags_generic,
-    {
-      sub_environment = "gateway"
-  })
+  #VNET
+  tags_vnet_main = local.tags_subenv_main_generic
 
-  tags_subenv_shared_services = merge(local.tags_generic,
-    {
-      sub_environment = "shared_services"
-  })
+  #NSGS
+  tags_nsg_gateway         = local.tags_subenv_gateway_generic
+  tags_nsg_shared_services = local.tags_subenv_shared_services_generic
+  tags_nsg_dmz             = local.tags_subenv_dmz_generic
 
-  tags_subenv_dmz = merge(local.tags_generic,
-    {
-      sub_environment = "dmz"
-  })
-
-  tags_nsg_gateway         = tags_subenv_gateway
-  tags_nsg_shared_services = tags_subenv_shared_services
-  tags_nsg_dmz             = tags_subenv_dmz
 }

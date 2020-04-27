@@ -1,4 +1,4 @@
-resource "azurerm_virtual_network" "hub" {
+resource "azurerm_virtual_network" "main" {
   name                = module.naming-hub.vnet_names["main"]
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
@@ -10,5 +10,5 @@ resource "azurerm_virtual_network" "hub" {
     enable = true
   }
 
-  tags = local.tags_vnet_hub
+  tags = local.tags_vnet_main
 }
