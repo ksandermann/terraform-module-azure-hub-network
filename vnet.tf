@@ -6,7 +6,7 @@ resource "azurerm_virtual_network" "main" {
   dns_servers         = var.vnet_main_dns_servers
 
   ddos_protection_plan {
-    id     = data.azurerm_network_ddos_protection_plan.main.name
+    id     = data.azurerm_network_ddos_protection_plan.main.id
     enable = true
   }
 
