@@ -21,13 +21,10 @@ variable "vnet_main_dns_servers" {
 }
 
 variable "subnet_shared_services_cidr" {
-  default = ""
 }
 
 variable "subnet_gateway_cidr" {
-  default = ""
 }
 
 variable "subnet_dmz_cidr" {
-  default = ""
 }
