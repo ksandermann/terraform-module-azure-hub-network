@@ -1,6 +1,6 @@
 resource "azurerm_subnet" "gateway" {
   name                 = module.naming-hub.subnet_names["gateway"]
-  resource_group_name  = azurerm_virtual_network.main.resource_group_name
+  resource_group_name  = data.azurerm_resource_group.gateway.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefix       = var.subnet_gateway_cidr
 }
@@ -12,7 +12,7 @@ resource "azurerm_subnet_network_security_group_association" "gateway" {
 
 resource "azurerm_subnet" "shared_services" {
   name                 = module.naming-hub.subnet_names["shared_services"]
-  resource_group_name  = azurerm_virtual_network.main.resource_group_name
+  resource_group_name  = data.azurerm_resource_group.shared_services.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefix       = var.subnet_shared_services_cidr
 }
@@ -24,7 +24,7 @@ resource "azurerm_subnet_network_security_group_association" "shared_services" {
 
 resource "azurerm_subnet" "dmz" {
   name                 = module.naming-hub.subnet_names["dmz"]
-  resource_group_name  = azurerm_virtual_network.main.resource_group_name
+  resource_group_name  = data.azurerm_resource_group.dmz.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefix       = var.subnet_dmz_cidr
 }
@@ -36,7 +36,7 @@ resource "azurerm_subnet_network_security_group_association" "dmz" {
 
 resource "azurerm_subnet" "azure_firewall" {
   name                 = module.naming-hub.subnet_names["firewall"]
-  resource_group_name  = azurerm_virtual_network.main.resource_group_name
+  resource_group_name  = data.azurerm_resource_group.firewall.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefix       = var.subnet_firewall_cidr
 }

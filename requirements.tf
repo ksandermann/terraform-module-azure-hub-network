@@ -14,6 +14,10 @@ data "azurerm_resource_group" "shared_services" {
   name = module.naming-hub.resource_group_names["shared_services"]
 }
 
+data "azurerm_resource_group" "firewall" {
+  name = module.naming-hub.resource_group_names["firewall"]
+}
+
 data "azurerm_resource_group" "dmz" {
   name = module.naming-hub.resource_group_names["dmz"]
 }
