@@ -1,7 +1,7 @@
 resource "azurerm_firewall" "dmz" {
   name                = module.naming-hub.azure_firewall_names["dmz"]
-  location            = data.azurerm_resource_group.dmz.name
-  resource_group_name = data.azurerm_resource_group.dmz.location
+  location            = data.azurerm_resource_group.dmz.location
+  resource_group_name = data.azurerm_resource_group.dmz.name
   zones               = var.firewall_dmz_zones
   tags                = local.tags_firewall_dmz
 
