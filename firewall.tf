@@ -1,4 +1,4 @@
-resource "azurerm_firewall" "dmz" {
+resource "azurerm_firewall" "hub" {
   name                = module.naming-hub.azure_firewall_names["dmz"]
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
@@ -8,11 +8,11 @@ resource "azurerm_firewall" "dmz" {
   ip_configuration {
     name                 = format("%s%s", module.naming-hub.azure_firewall_names["dmz"], "IP001")
     subnet_id            = azurerm_subnet.azure_firewall.id
-    public_ip_address_id = azurerm_public_ip.azure_firewall_dmz.id
+    public_ip_address_id = azurerm_public_ip.azure_firewall_hub.id
   }
 }
 
-resource "azurerm_public_ip" "azure_firewall_dmz" {
+resource "azurerm_public_ip" "azure_firewall_hub" {
   name                = format("%s%s", module.naming-hub.azure_firewall_names["dmz"], "PUB001")
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
