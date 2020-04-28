@@ -23,4 +23,6 @@ locals {
   tags_nsg_shared_services = local.tags_subenv_shared_services_generic
   tags_nsg_dmz             = local.tags_subenv_dmz_generic
 
+  #AFW
+  tags_firewall_dmz = local.tags_subenv_dmz_generic
 }

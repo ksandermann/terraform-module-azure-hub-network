@@ -26,3 +26,7 @@ variable "subnet_gateway_cidr" {
 
 variable "subnet_dmz_cidr" {
 }
+
+variable "firewall_dmz_zones" {
+  type = list(number)
+}
