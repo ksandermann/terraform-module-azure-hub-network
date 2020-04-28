@@ -1,7 +1,7 @@
 resource "azurerm_firewall_network_rule_collection" "example" {
   name                = "testcollection"
   azure_firewall_name = azurerm_firewall.hub.name
-  resource_group_name = data.azurerm_resource_group.main
+  resource_group_name = data.azurerm_resource_group.main.name
   priority            = 100
   action              = "Allow"
 
