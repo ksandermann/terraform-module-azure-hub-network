@@ -7,7 +7,7 @@ resource "azurerm_firewall" "dmz" {
 
   ip_configuration {
     name                 = format("%s%s", module.naming-hub.azure_firewall_names["dmz"], "IP001")
-    subnet_id            = azurerm_subnet.dmz.id
+    subnet_id            = azurerm_subnet.azure_firewall.id
     public_ip_address_id = azurerm_public_ip.azure_firewall_dmz.id
   }
 }
